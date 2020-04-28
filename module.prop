@@ -1,0 +1,6 @@
+id=disk
+name=Disk Tools for Android
+version=v1
+versionCode=1
+author=Denis Efremov (@evdenis)
+description=Disk tools (fdisk, sfdisk) for Android (aarch64).
