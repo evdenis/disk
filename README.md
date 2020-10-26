@@ -10,9 +10,7 @@ Stable release:
 Master branch:
 1. git clone https://github.com/evdenis/disk
 2. cd disk
-3. git archive --output disk.zip HEAD
-4. adb push disk.zip /sdcard/
-5. MagiskManager -> Modules + disk.zip -> Reboot
+3. make install
 
 ## Support
 
