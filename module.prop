@@ -1,7 +1,7 @@
 id=disk
 name=Disk Tools for Android
-version=v1
-versionCode=1
+version=v3.0
+versionCode=3
 author=Denis Efremov (@evdenis)
 description=Disk tools (fdisk, sfdisk, cgdisk, gdisk, sgdisk, fixparts, parted) for Android (aarch64).
 updateJson=https://github.com/evdenis/disk/releases/latest/download/update.json
