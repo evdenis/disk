@@ -1,2 +1,15 @@
 .gitattributes export-ignore
 .gitignore export-ignore
+.dockerignore export-ignore
+.github/ export-ignore
+hooks/ export-ignore
+scripts/ export-ignore
+tests/ export-ignore
+Makefile export-ignore
+Dockerfile export-ignore
+README.md export-ignore
+LICENSE export-ignore
+CHANGELOG.md export-ignore
+CHECKLIST.md export-ignore
+CLAUDE.md export-ignore
+cliff.toml export-ignore
