@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+    tags-ignore: ['v*']
+  pull_request:
+  workflow_call:
+
+jobs:
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Lint shell scripts
+        run: make lint
+
+  zip:
+    name: Build & verify zip
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build zip
+        run: make zip
+      - name: Verify zip contents
+        run: |
+          ZIP=$(ls *-v*.zip)
+          LISTING=$(unzip -l "$ZIP")
+          for f in module.prop customize.sh \
+                   system/bin/fdisk \
+                   system/bin/sfdisk \
+                   system/bin/cgdisk \
+                   system/bin/gdisk \
+                   system/bin/sgdisk \
+                   system/bin/fixparts \
+                   system/bin/parted \
+                   META-INF/com/google/android/update-binary \
+                   META-INF/com/google/android/updater-script; do
+            echo "$LISTING" | grep -q "$f" || { echo "MISSING: $f"; exit 1; }
+          done
+          for f in .gitignore .gitattributes .dockerignore CLAUDE.md .claude/ .git/ .github/ \
+                   Makefile Dockerfile LICENSE README.md \
+                   CHANGELOG.md CHECKLIST.md cliff.toml hooks/ scripts/ tests/ out/; do
+            if echo "$LISTING" | grep -q "$f"; then
+              echo "UNEXPECTED: $f found in zip"; exit 1
+            fi
+          done
