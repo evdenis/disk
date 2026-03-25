@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if ! command -v shellcheck >/dev/null 2>&1; then
+    echo "shellcheck not found, skipping lint"
+    exit 0
+fi
+
+make lint
